@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ofi.base;
+package com.opfisa.pojos;
 
 /**
  *
- * @author CONDMD29
+ * @author ACER
  */
-public class BaseDatos {
+public class Persona {
     
 }
