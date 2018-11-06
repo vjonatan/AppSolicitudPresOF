@@ -7,7 +7,10 @@ package com.opfisa.base;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -15,8 +18,16 @@ import java.sql.SQLException;
  */
 public class BaseDatos {
     
-    public static Connection conectar(){
-		Connection con = null;
+    Connection con = null;
+    PreparedStatement st = null;
+    Statement stat = null;
+    ResultSet rs = null;
+
+    public BaseDatos() {
+    }   
+    
+    public Connection conectar(){
+		//Connection con = null;
 		
 		String DRIVER = "sun.jdbc.odbc.JdbcOdbcDriver";
 		String URL = "jdbc:odbc:Personas";
