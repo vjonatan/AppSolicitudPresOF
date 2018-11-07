@@ -5,6 +5,7 @@
  */
 package com.opfisa.base;
 
+import com.opfisa.pojos.Persona;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -47,5 +48,28 @@ public class BaseDatos {
 		return con;
 		
 	}
+    
+    public void insertarPersona(Persona persona){
+        String URL = "jdbc:mysql://localhost:3306/db-sistema";
+        String USR = "root";
+        String PSW = "123456";
+        
+        try {
+            con = DriverManager.getConnection(URL, USR, PSW);
+            
+            String sql = "INSERT INTO persona (docu, tdocu, razon, calle, ubica, cloca, telefono, nacido, sexo, ecivil, "
+                    + "trabajo, tcalle, tubica, tcloca, ttelefono, tseccion, tsueldo, factual, fbaja, telmovil, telref, "
+                    + "email, cctabanc, docucony, docugara)"
+                    + "VALUES ('?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,)";
+            
+            st = con.prepareStatement(sql);
+            
+            st.setString(1, persona.getDocumento());
+            
+            
+        } catch (Exception e) {
+        }
+        
+    }
     
 }

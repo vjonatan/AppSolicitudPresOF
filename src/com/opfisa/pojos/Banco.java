@@ -12,4 +12,28 @@ package com.opfisa.pojos;
 public class Banco {
     private String codBanco;
     private String nombreBanco;
+
+    public Banco(String codBanco, String nombreBanco) {
+        this.codBanco = codBanco;
+        this.nombreBanco = nombreBanco;
+    }
+
+    public String getCodBanco() {
+        return codBanco;
+    }
+
+    public void setCodBanco(String codBanco) {
+        this.codBanco = codBanco;
+    }
+
+    public String getNombreBanco() {
+        return nombreBanco;
+    }
+
+    public void setNombreBanco(String nombreBanco) {
+        this.nombreBanco = nombreBanco;
+    }
+    
+    
+    
 }
