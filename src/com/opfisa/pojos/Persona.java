@@ -12,7 +12,7 @@ import java.sql.Date;
  * @author ACER
  */
 public class Persona {
-    private String documento;
+    private int documento;
     private int tipoDocumento;
     private String razon;
     private String calle;
@@ -38,7 +38,7 @@ public class Persona {
     private int documentoConyugue;      //docucony
     private int documentoGarante;       //docugara
 
-    public Persona(String documento, int tipoDocumento, String razon, String calle, String ubica, String codLocalidad, String telefono, Date fechaNacimiento, String sexo, String estadoCivil, String lugarTrabajo, String calleTrabajo, String ubicacionNroTrabajo, String codLocalidadTrabajo, String telefonoTrabajo, String seccionTrabajo, double sueldo, Date fechaActualizacion, Date fechaBaja, String telefonoMovil, String telefonoReferencia, String email, String idCodCtaBancaria, int documentoConyugue, int documentoGarante) {
+    public Persona(int documento, int tipoDocumento, String razon, String calle, String ubica, String codLocalidad, String telefono, Date fechaNacimiento, String sexo, String estadoCivil, String lugarTrabajo, String calleTrabajo, String ubicacionNroTrabajo, String codLocalidadTrabajo, String telefonoTrabajo, String seccionTrabajo, double sueldo, Date fechaActualizacion, Date fechaBaja, String telefonoMovil, String telefonoReferencia, String email, String idCodCtaBancaria, int documentoConyugue, int documentoGarante) {
         this.documento = documento;
         this.tipoDocumento = tipoDocumento;
         this.razon = razon;
@@ -66,11 +66,11 @@ public class Persona {
         this.documentoGarante = documentoGarante;
     }
 
-    public String getDocumento() {
+    public int getDocumento() {
         return documento;
     }
 
-    public void setDocumento(String documento) {
+    public void setDocumento(int documento) {
         this.documento = documento;
     }
 
@@ -264,6 +264,11 @@ public class Persona {
 
     public void setDocumentoGarante(int documentoGarante) {
         this.documentoGarante = documentoGarante;
+    }
+
+    @Override
+    public String toString() {
+        return this.getRazon() + " - " + this.getDocumento();
     }
     
     

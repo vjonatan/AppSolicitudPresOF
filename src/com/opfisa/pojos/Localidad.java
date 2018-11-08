@@ -63,6 +63,12 @@ public class Localidad {
     public void setProvincia(String provincia) {
         this.provincia = provincia;
     }
+
+    @Override
+    public String toString() {
+        return this.getCodLocalidad() + " - " + this.getDescripcionLocalidad() + " - " 
+             + this.getCodigoPostal() + " - " + this.getDepartamento() + " - " + this.getProvincia();
+    }
     
     
     
