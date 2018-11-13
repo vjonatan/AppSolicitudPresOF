@@ -237,11 +237,11 @@ public class BaseDatos {
                 Date fechaBaja = rs.getDate("fbaja");
                 Date fechaModificacion = rs.getDate("fmodif");
                 int idTipoCredito = rs.getInt("tcredi");
-                int documento = rs.getInt("docu");
+                String documento = rs.getString("docu");
                                 
-                Localidad localidad = new Localidad(codLocalidad, descripcionLocalidad, codigoPostal, departamento, provincia);
+                SolicitudPrestamo solicitudPrestamo = new SolicitudPrestamo(idSolicitudPrestamo, montoSolicitado, fechaAlta, fechaBaja, fechaModificacion, idTipoCredito, documento);
                 
-                listaLocalidades.add(localidad);
+                listaSolicitudesPrestamo.add(solicitudPrestamo);
                 
             }
             
@@ -257,7 +257,7 @@ public class BaseDatos {
             }            
         }
        
-        return listaLocalidades; 
+        return listaSolicitudesPrestamo; 
     }
     
     
