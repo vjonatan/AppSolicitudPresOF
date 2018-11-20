@@ -34,11 +34,13 @@ public class Persona {
     private String telefonoMovil;       //telmovil
     private String telefonoReferencia;  //telref
     private String email;               
-    private String idCodCtaBancaria;    //cctabanc
+    private String nroCuentaBancaria;   //cctabanc
+    private String cbu;                 // -------------------------------------AGREGAR COLUMNA CBU
+    private String codBanco;            //--------------------------------------AGREGAR COLUMNA CODBANCO -ELIMINAR ENTIDAD CuentaBanc
     private int documentoConyugue;      //docucony
     private int documentoGarante;       //docugara
 
-    public Persona(int documento, int tipoDocumento, String razon, String calle, String ubica, String codLocalidad, String telefono, Date fechaNacimiento, String sexo, String estadoCivil, String lugarTrabajo, String calleTrabajo, String ubicacionNroTrabajo, String codLocalidadTrabajo, String telefonoTrabajo, String seccionTrabajo, double sueldo, Date fechaActualizacion, Date fechaBaja, String telefonoMovil, String telefonoReferencia, String email, String idCodCtaBancaria, int documentoConyugue, int documentoGarante) {
+    public Persona(int documento, int tipoDocumento, String razon, String calle, String ubica, String codLocalidad, String telefono, Date fechaNacimiento, String sexo, String estadoCivil, String lugarTrabajo, String calleTrabajo, String ubicacionNroTrabajo, String codLocalidadTrabajo, String telefonoTrabajo, String seccionTrabajo, double sueldo, Date fechaActualizacion, Date fechaBaja, String telefonoMovil, String telefonoReferencia, String email, String nroCuentaBancaria, String cbu, String codBanco, int documentoConyugue, int documentoGarante) {
         this.documento = documento;
         this.tipoDocumento = tipoDocumento;
         this.razon = razon;
@@ -61,9 +63,14 @@ public class Persona {
         this.telefonoMovil = telefonoMovil;
         this.telefonoReferencia = telefonoReferencia;
         this.email = email;
-        this.idCodCtaBancaria = idCodCtaBancaria;
+        this.nroCuentaBancaria = nroCuentaBancaria;
+        this.cbu = cbu;
+        this.codBanco = codBanco;
         this.documentoConyugue = documentoConyugue;
         this.documentoGarante = documentoGarante;
+    }
+
+    public Persona() {
     }
 
     public int getDocumento() {
@@ -242,13 +249,29 @@ public class Persona {
         this.email = email;
     }
 
-    public String getIdCodCtaBancaria() {
-        return idCodCtaBancaria;
+    public String getnroCuentaBancariaa() {
+        return nroCuentaBancaria;
     }
 
-    public void setIdCodCtaBancaria(String idCodCtaBancaria) {
-        this.idCodCtaBancaria = idCodCtaBancaria;
+    public void setnroCuentaBancaria(String nroCuentaBancaria) {
+        this.nroCuentaBancaria = nroCuentaBancaria;
     }
+
+    public String getCbu() {
+        return cbu;
+    }
+
+    public void setCbu(String cbu) {
+        this.cbu = cbu;
+    }
+
+    public String getCodBanco() {
+        return codBanco;
+    }
+
+    public void setCodBanco(String codBanco) {
+        this.codBanco = codBanco;
+    }        
 
     public int getDocumentoConyugue() {
         return documentoConyugue;

@@ -24,6 +24,11 @@ import java.util.ArrayList;
  */
 public class BaseDatos {
     
+    String DRIVER = "sun.jdbc.odbc.JdbcOdbcDriver";
+    String URL = "jdbc:odbc:Personas";
+    String USR = "";
+    String PSW = "";
+    
     Connection con = null;
     PreparedStatement st = null;
     Statement stat = null;
@@ -33,11 +38,12 @@ public class BaseDatos {
     }   
     
     
+    
     public void insertarPersona(Persona persona){
-        String DRIVER = "sun.jdbc.odbc.JdbcOdbcDriver";
+        /*String DRIVER = "sun.jdbc.odbc.JdbcOdbcDriver";
         String URL = "jdbc:odbc:Personas";
         String USR = "";
-        String PSW = "";
+        String PSW = "";*/
         
         try {
             con = DriverManager.getConnection(URL, USR, PSW);
@@ -103,7 +109,7 @@ public class BaseDatos {
                 Persona persona = new Persona(documento, tipoDocumento, razonSocial, calle, ubicacion, codigoLocalidad, telefono, fechaNacimiento, sexo, estadoCivil
                                                 , trabajo, calleTrabajo, ubicacionTrabajo, codLocalidadTrabajo, telefonoTrabajo, areaTrabajo, sueldo
                                                 , fechaActualizacion, fechaBaja
-                                                , telefonoMovil, telefonoReferencia, email, codCtaBancaria, documentoConyugue, documentoGarante);
+                                                , telefonoMovil, telefonoReferencia, email, codCtaBancaria, null, null, documentoConyugue, documentoGarante);
                 
                 listaPersonas.add(persona);
                 
@@ -237,11 +243,11 @@ public class BaseDatos {
                 Date fechaBaja = rs.getDate("fbaja");
                 Date fechaModificacion = rs.getDate("fmodif");
                 int idTipoCredito = rs.getInt("tcredi");
-                int documento = rs.getInt("docu");
+                String documento = rs.getString("docu");
                                 
-                Localidad localidad = new Localidad(codLocalidad, descripcionLocalidad, codigoPostal, departamento, provincia);
+                SolicitudPrestamo solicitudPrestamo = new SolicitudPrestamo(idSolicitudPrestamo, montoSolicitado, fechaAlta, fechaBaja, fechaModificacion, idTipoCredito, documento);
                 
-                listaLocalidades.add(localidad);
+                listaSolicitudesPrestamo.add(solicitudPrestamo);
                 
             }
             
@@ -257,7 +263,7 @@ public class BaseDatos {
             }            
         }
        
-        return listaLocalidades; 
+        return listaSolicitudesPrestamo; 
     }
     
     
