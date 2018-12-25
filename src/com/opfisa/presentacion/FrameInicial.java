@@ -94,7 +94,6 @@ public class FrameInicial extends javax.swing.JFrame {
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/opfisa/files/habitaciones.png"))); // NOI18N
         jMenu1.setText("Préstamos");
-        jMenu1.setEnabled(false);
 
         solicitudPrestamoMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/opfisa/files/Reservas.png"))); // NOI18N
         solicitudPrestamoMenuItem1.setText("Solicitud Préstamo");
@@ -109,7 +108,6 @@ public class FrameInicial extends javax.swing.JFrame {
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/opfisa/files/Consultas.png"))); // NOI18N
         jMenu2.setText("Consultas");
-        jMenu2.setEnabled(false);
         menuBar.add(jMenu2);
 
         menuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/opfisa/files/Salir.png"))); // NOI18N

@@ -69,7 +69,6 @@
               <Image iconType="3" name="/com/opfisa/files/habitaciones.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Pr&#xe9;stamos"/>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="solicitudPrestamoMenuItem1">
@@ -91,7 +90,6 @@
               <Image iconType="3" name="/com/opfisa/files/Consultas.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Consultas"/>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuSalir">
