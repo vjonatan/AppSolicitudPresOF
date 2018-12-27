@@ -36,7 +36,7 @@ public class ManagerPersona {
         
         String [] titulos = {"Documento", "Tipo Doc", "Razon Social", "Domicilio", "Nro", "Localidad", "Telefono", "Fecha Nac", "Sexo", "E.Civil", "Trabajo"
                             , "Domicilio Trabajo", "Dom.Trab.Nro", "Loc.Trabajo", "Tel.Trabajo", "Sector Trab.", "Sueldo", "F.Actualizacion", "F.Baja"
-                            , "Tel. Movil", "Tel. Ref.", "Email", "Cta.Banc.", "Doc. Conyugue", "Doc. Garante", "Banco", "CBU"};
+                            ,"Cod. Tel. Movil", "Tel. Movil","Cod. Tel. Ref.", "Tel. Ref.", "Email", "Cta.Banc.", "Doc. Conyugue", "Doc. Garante", "Banco", "CBU"};
         
         String [] registro = new String [titulos.length];
         
@@ -79,23 +79,25 @@ public class ManagerPersona {
                 registro[16] = rs.getString("sueldo");
                 registro[17] = rs.getString("factual");
                 registro[18] = rs.getString("fbaja");
-                registro[19] = rs.getString("telmovil");
-                registro[20] = rs.getString("telref");
-                registro[21] = rs.getString("email");
-                registro[22] = rs.getString("cctabanc");
+                registro[19] = rs.getString("ctmovil");
+                registro[20] = rs.getString("telmovil");
+                registro[21] = rs.getString("codtel");
+                registro[22] = rs.getString("telref");
+                registro[23] = rs.getString("email");
+                registro[24] = rs.getString("cctabanc");
                 
                 String numeroDocumentoC = rs.getString("docucony");
                 Double numeroDocumentoCAux = Double.valueOf(numeroDocumentoC);
                 Integer numeroDocumentoCAux2 = numeroDocumentoCAux.intValue(); 
-                registro[23] = numeroDocumentoCAux2.toString();
+                registro[25] = numeroDocumentoCAux2.toString();
                 
                 String numeroDocumentoG = rs.getString("docugara");
                 Double numeroDocumentoGAux = Double.valueOf(numeroDocumentoG);
                 Integer numeroDocumentoGAux2 = numeroDocumentoGAux.intValue();                
-                registro[24] = numeroDocumentoGAux2.toString();
+                registro[26] = numeroDocumentoGAux2.toString();
                 
-                registro[25] = rs.getString("codbanc");
-                registro[26] = rs.getString("cbu");
+                registro[27] = rs.getString("codbanc");
+                registro[28] = rs.getString("cbu");
                 
                 totalRegistros = totalRegistros + 1;
                 
