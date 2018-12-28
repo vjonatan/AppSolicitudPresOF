@@ -120,38 +120,46 @@ public class FramePersona extends javax.swing.JInternalFrame {
         tablaListadoPersonas.getColumnModel().getColumn(18).setMaxWidth(0);     //fbaja
         tablaListadoPersonas.getColumnModel().getColumn(18).setMinWidth(0);
         tablaListadoPersonas.getColumnModel().getColumn(18).setPreferredWidth(0);
-
-        tablaListadoPersonas.getColumnModel().getColumn(19).setMaxWidth(0);     //telmovil
+        
+        tablaListadoPersonas.getColumnModel().getColumn(19).setMaxWidth(0);     //ctmovil
         tablaListadoPersonas.getColumnModel().getColumn(19).setMinWidth(0);
         tablaListadoPersonas.getColumnModel().getColumn(19).setPreferredWidth(0);
 
-        tablaListadoPersonas.getColumnModel().getColumn(20).setMaxWidth(0);     //telref
+        tablaListadoPersonas.getColumnModel().getColumn(20).setMaxWidth(0);     //telmovil
         tablaListadoPersonas.getColumnModel().getColumn(20).setMinWidth(0);
         tablaListadoPersonas.getColumnModel().getColumn(20).setPreferredWidth(0);
-
-        tablaListadoPersonas.getColumnModel().getColumn(21).setMaxWidth(0);     //email
+        
+        tablaListadoPersonas.getColumnModel().getColumn(21).setMaxWidth(0);     //ctref
         tablaListadoPersonas.getColumnModel().getColumn(21).setMinWidth(0);
         tablaListadoPersonas.getColumnModel().getColumn(21).setPreferredWidth(0);
 
-        tablaListadoPersonas.getColumnModel().getColumn(22).setMaxWidth(0);     //cctabanc
+        tablaListadoPersonas.getColumnModel().getColumn(22).setMaxWidth(0);     //telref
         tablaListadoPersonas.getColumnModel().getColumn(22).setMinWidth(0);
         tablaListadoPersonas.getColumnModel().getColumn(22).setPreferredWidth(0);
 
-        tablaListadoPersonas.getColumnModel().getColumn(23).setMaxWidth(0);     //docucony
+        tablaListadoPersonas.getColumnModel().getColumn(23).setMaxWidth(0);     //email
         tablaListadoPersonas.getColumnModel().getColumn(23).setMinWidth(0);
         tablaListadoPersonas.getColumnModel().getColumn(23).setPreferredWidth(0);
 
-        tablaListadoPersonas.getColumnModel().getColumn(24).setMaxWidth(0);     //docugara
+        tablaListadoPersonas.getColumnModel().getColumn(24).setMaxWidth(0);     //cctabanc
         tablaListadoPersonas.getColumnModel().getColumn(24).setMinWidth(0);
         tablaListadoPersonas.getColumnModel().getColumn(24).setPreferredWidth(0);
 
-        tablaListadoPersonas.getColumnModel().getColumn(25).setMaxWidth(0);     //codbanc
+        tablaListadoPersonas.getColumnModel().getColumn(25).setMaxWidth(0);     //docucony
         tablaListadoPersonas.getColumnModel().getColumn(25).setMinWidth(0);
         tablaListadoPersonas.getColumnModel().getColumn(25).setPreferredWidth(0);
 
-        tablaListadoPersonas.getColumnModel().getColumn(26).setMaxWidth(0);     //cbu
+        tablaListadoPersonas.getColumnModel().getColumn(26).setMaxWidth(0);     //docugara
         tablaListadoPersonas.getColumnModel().getColumn(26).setMinWidth(0);
         tablaListadoPersonas.getColumnModel().getColumn(26).setPreferredWidth(0);
+
+        tablaListadoPersonas.getColumnModel().getColumn(27).setMaxWidth(0);     //codbanc
+        tablaListadoPersonas.getColumnModel().getColumn(27).setMinWidth(0);
+        tablaListadoPersonas.getColumnModel().getColumn(27).setPreferredWidth(0);
+
+        tablaListadoPersonas.getColumnModel().getColumn(28).setMaxWidth(0);     //cbu
+        tablaListadoPersonas.getColumnModel().getColumn(28).setMinWidth(0);
+        tablaListadoPersonas.getColumnModel().getColumn(28).setPreferredWidth(0);
 
     }
 
@@ -437,7 +445,7 @@ public class FramePersona extends javax.swing.JInternalFrame {
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        campoCaracteristicaCelular = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
@@ -612,7 +620,7 @@ public class FramePersona extends javax.swing.JInternalFrame {
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel30.setText("-");
 
-        jTextField1.setText(" ");
+        campoCaracteristicaCelular.setText(" ");
 
         jLabel31.setText("(");
 
@@ -641,7 +649,6 @@ public class FramePersona extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel2)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dcFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(campoTelReferencia)
                             .addComponent(comboLocalidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(campoEmail)
@@ -666,7 +673,8 @@ public class FramePersona extends javax.swing.JInternalFrame {
                                         .addGap(1, 1, 1)
                                         .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(dcFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(30, 30, 30))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -700,7 +708,7 @@ public class FramePersona extends javax.swing.JInternalFrame {
                         .addGap(0, 0, 0)
                         .addComponent(jLabel31)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(campoCaracteristicaCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -805,7 +813,7 @@ public class FramePersona extends javax.swing.JInternalFrame {
                     .addComponent(jLabel28)
                     .addComponent(jLabel29)
                     .addComponent(jLabel30)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoCaracteristicaCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel31)
                     .addComponent(jLabel32)
                     .addComponent(jLabel33))
@@ -827,7 +835,7 @@ public class FramePersona extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(campoTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoTrabajoDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
@@ -1332,31 +1340,39 @@ public class FramePersona extends javax.swing.JInternalFrame {
         //Nota: no se agrega campo fechaActualizacion ya que lo vamos a obtener fecha/hora del sistema
         //Nota: no se agrega campo fechaBaja ya que lo vamos a obtener fecha/hora del sistema
         if (tablaListadoPersonas.getValueAt(fila, 19) != null) {
-            campoTelCelular.setText(tablaListadoPersonas.getValueAt(fila, 19).toString());
+            campoCaracteristicaCelular.setText(tablaListadoPersonas.getValueAt(fila, 19).toString());
         }
-
+        
         if (tablaListadoPersonas.getValueAt(fila, 20) != null) {
-            campoTelReferencia.setText(tablaListadoPersonas.getValueAt(fila, 20).toString());
+            campoTelCelular.setText(tablaListadoPersonas.getValueAt(fila, 20).toString());
         }
-
+        
         if (tablaListadoPersonas.getValueAt(fila, 21) != null) {
-            campoEmail.setText(tablaListadoPersonas.getValueAt(fila, 21).toString());
+            campoCaracteristicaTelefono.setText(tablaListadoPersonas.getValueAt(fila, 21).toString());
         }
 
         if (tablaListadoPersonas.getValueAt(fila, 22) != null) {
-            campoCtaBancaria.setText(tablaListadoPersonas.getValueAt(fila, 22).toString());
+            campoTelReferencia.setText(tablaListadoPersonas.getValueAt(fila, 22).toString());
+        }
+
+        if (tablaListadoPersonas.getValueAt(fila, 23) != null) {
+            campoEmail.setText(tablaListadoPersonas.getValueAt(fila, 23).toString());
+        }
+
+        if (tablaListadoPersonas.getValueAt(fila, 24) != null) {
+            campoCtaBancaria.setText(tablaListadoPersonas.getValueAt(fila, 24).toString());
         }
 
         //FALTA CAMPO DOCUMENTO GARANTE - VER LA MANERA DE AGREGAR EN TABLA PERSONA EL nombre/documento del GARANTE
         //FALTA CAMPO DOCUMENTO CONYUGUE - VER LA MANERA DE AGREGAR EN TABLA PERSONA EL nombre/documento del CONYUGUE
         
-        if (tablaListadoPersonas.getValueAt(fila, 25) != null) {
+        if (tablaListadoPersonas.getValueAt(fila, 27) != null) {
             //comboBanco.setSelectedItem(tablaListadoPersonas.getValueAt(fila, 25));
-            this.setSelectedValueBanco(comboBanco, mBanco.obtenerBancoXCriterio(tablaListadoPersonas.getValueAt(fila, 25).toString()).getNombreBanco());
+            this.setSelectedValueBanco(comboBanco, mBanco.obtenerBancoXCriterio(tablaListadoPersonas.getValueAt(fila, 27).toString()).getNombreBanco());
         }
 
-        if (tablaListadoPersonas.getValueAt(fila, 26) != null) {
-            campoCbu.setText(tablaListadoPersonas.getValueAt(fila, 26).toString());
+        if (tablaListadoPersonas.getValueAt(fila, 28) != null) {
+            campoCbu.setText(tablaListadoPersonas.getValueAt(fila, 28).toString());
         }
     }//GEN-LAST:event_tablaListadoPersonasMouseClicked
 
@@ -1469,6 +1485,7 @@ public static void main(String args[]) {
     private javax.swing.JButton btnSalir;
     private javax.swing.JTextField campoBuscarXdocumento;
     private javax.swing.JTextField campoBuscarXnombre;
+    private javax.swing.JTextField campoCaracteristicaCelular;
     private javax.swing.JTextField campoCaracteristicaTelefono;
     private javax.swing.JTextField campoCbu;
     private javax.swing.JTextField campoCtaBancaria;
@@ -1531,7 +1548,6 @@ public static void main(String args[]) {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblRegistrosTotales;
     private javax.swing.JTable tablaListadoPersonas;
     // End of variables declaration//GEN-END:variables
