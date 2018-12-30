@@ -5,6 +5,7 @@
  */
 package com.opfisa.base;
 
+import com.opfisa.datos.TipoCredito;
 import com.opfisa.pojos.Banco;
 import com.opfisa.pojos.Localidad;
 import com.opfisa.pojos.Persona;
@@ -264,6 +265,11 @@ public class BaseDatos {
         }
        
         return listaSolicitudesPrestamo; 
+    }
+    
+    public ArrayList<TipoCredito> obtenerTipoCreditos(){
+        
+        
     }
     
     
