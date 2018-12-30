@@ -36,7 +36,7 @@ public class ManagerPersona {
         
         String [] titulos = {"Documento", "Tipo Doc", "Razon Social", "Domicilio", "Nro", "Localidad", "Telefono", "Fecha Nac", "Sexo", "E.Civil", "Trabajo"
                             , "Domicilio Trabajo", "Dom.Trab.Nro", "Loc.Trabajo", "Tel.Trabajo", "Sector Trab.", "Sueldo", "F.Actualizacion", "F.Baja"
-                            , "Tel. Movil", "Tel. Ref.", "Email", "Cta.Banc.", "Doc. Conyugue", "Doc. Garante", "Banco", "CBU"};
+                            ,"Cod. Tel. Movil", "Tel. Movil","Cod. Tel. Ref.", "Tel. Ref.", "Email", "Cta.Banc.", "Doc. Conyugue", "Doc. Garante", "Banco", "CBU"};
         
         String [] registro = new String [titulos.length];
         
@@ -45,6 +45,89 @@ public class ManagerPersona {
         modelo = new DefaultTableModel(null, titulos);
         
         sql = "SELECT * FROM personas WHERE razon LIKE '%" + buscar.toUpperCase() + "%' ORDER BY razon";
+        
+        try {
+            st = con.createStatement();
+            rs = st.executeQuery(sql);
+            
+            while (rs.next()) {
+                
+                String numeroDocumento = rs.getString("docu");
+                Double nroDocAux = Double.valueOf(numeroDocumento);
+                Integer nroDocAux2 = nroDocAux.intValue();                
+                registro[0] = nroDocAux2.toString(); //rs.getString("docu");
+                
+                String tipoDocumento = rs.getString("tdocu");
+                Double tdocuAux = Double.valueOf(tipoDocumento);
+                Integer tdocuAux2 = tdocuAux.intValue();
+                registro[1] = tdocuAux2.toString();  //rs.getString("tdocu");
+                
+                registro[2] = rs.getString("razon");
+                registro[3] = rs.getString("calle");
+                registro[4] = rs.getString("ubica");
+                registro[5] = rs.getString("cloca");
+                registro[6] = rs.getString("telefono");
+                registro[7] = rs.getString("nacido");
+                registro[8] = rs.getString("sexo");
+                registro[9] = rs.getString("ecivil");
+                registro[10] = rs.getString("trabajo");
+                registro[11] = rs.getString("tcalle");
+                registro[12] = rs.getString("tubica");
+                registro[13] = rs.getString("tcloca");
+                registro[14] = rs.getString("ttelefo");
+                registro[15] = rs.getString("tseccion");
+                registro[16] = rs.getString("sueldo");
+                registro[17] = rs.getString("factual");
+                registro[18] = rs.getString("fbaja");
+                registro[19] = rs.getString("ctmovil");
+                registro[20] = rs.getString("telmovil");
+                registro[21] = rs.getString("codtel");
+                registro[22] = rs.getString("telref");
+                registro[23] = rs.getString("email");
+                registro[24] = rs.getString("cctabanc");
+                
+                String numeroDocumentoC = rs.getString("docucony");
+                Double numeroDocumentoCAux = Double.valueOf(numeroDocumentoC);
+                Integer numeroDocumentoCAux2 = numeroDocumentoCAux.intValue(); 
+                registro[25] = numeroDocumentoCAux2.toString();
+                
+                String numeroDocumentoG = rs.getString("docugara");
+                Double numeroDocumentoGAux = Double.valueOf(numeroDocumentoG);
+                Integer numeroDocumentoGAux2 = numeroDocumentoGAux.intValue();                
+                registro[26] = numeroDocumentoGAux2.toString();
+                
+                registro[27] = rs.getString("codbanc");
+                registro[28] = rs.getString("cbu");
+                
+                totalRegistros = totalRegistros + 1;
+                
+                modelo.addRow(registro);
+                
+            }
+            return modelo;            
+            
+        } catch (SQLException e) {
+            JOptionPane.showConfirmDialog(null, e);
+            e.printStackTrace();
+            return null;
+        }
+        
+    }
+    
+    public DefaultTableModel buscarXdocumento(String buscar){
+        DefaultTableModel modelo;
+        
+        String [] titulos = {"Documento", "Tipo Doc", "Razon Social", "Domicilio", "Nro", "Localidad", "Telefono", "Fecha Nac", "Sexo", "E.Civil", "Trabajo"
+                            , "Domicilio Trabajo", "Dom.Trab.Nro", "Loc.Trabajo", "Tel.Trabajo", "Sector Trab.", "Sueldo", "F.Actualizacion", "F.Baja"
+                            , "Tel. Movil", "Tel. Ref.", "Email", "Cta.Banc.", "Doc. Conyugue", "Doc. Garante", "Banco", "CBU"};
+        
+        String [] registro = new String [titulos.length];
+        
+        totalRegistros = 0;
+        
+        modelo = new DefaultTableModel(null, titulos);
+        
+        sql = "SELECT * FROM personas WHERE docu LIKE '%" + buscar.toUpperCase() + "%' ORDER BY docu";
         
         try {
             st = con.createStatement();
