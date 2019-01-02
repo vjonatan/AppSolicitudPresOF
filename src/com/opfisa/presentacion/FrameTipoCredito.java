@@ -6,7 +6,10 @@
 package com.opfisa.presentacion;
 
 import com.opfisa.base.BaseDatos;
+import com.opfisa.datos.ManagerTipoCredito;
 import com.opfisa.datos.TipoCredito;
+import java.sql.Date;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,12 +19,14 @@ import javax.swing.table.DefaultTableModel;
 public class FrameTipoCredito extends javax.swing.JDialog {
 
     BaseDatos base = new BaseDatos();
+    ManagerTipoCredito mTipoCredito = new ManagerTipoCredito();
     DefaultTableModel modeloTablaTipoCredito = new DefaultTableModel();
-    TipoCredito tipoCreditoSeleccionado;
+    TipoCredito tipoCreditoSeleccionado = null;
     
     public FrameTipoCredito(java.awt.Frame parent, boolean modal) {
         initComponents();
         this.cargarColumnasTablaTipoCredito();
+        this.cargarTablaTipoCredito();
     }
     
     private void cargarColumnasTablaTipoCredito() {
@@ -31,6 +36,54 @@ public class FrameTipoCredito extends javax.swing.JDialog {
         modeloTablaTipoCredito.addColumn("Vigencia Hasta");
     }
     
+    private void cargarTablaTipoCredito(){
+        
+        ArrayList<TipoCredito> listaTipoCreditos = mTipoCredito.obtenerTipoCreditos();
+        int cantidadTipoCreditos = listaTipoCreditos.size();
+        modeloTablaTipoCredito.setNumRows(cantidadTipoCreditos);
+        
+        for (int i = 0; i < cantidadTipoCreditos; i++) {
+            TipoCredito tipoCredito = listaTipoCreditos.get(i);
+            
+            int codigo = tipoCredito.getCodTipoCredito();
+            String descripcion = tipoCredito.getDescripcionTipoCredito();
+            Date fechaVigenciaDesde = tipoCredito.getFechaVigenciaDesde();
+            Date fechaVigenciaHasta = tipoCredito.getFechaVigenciaHasta();
+            
+            modeloTablaTipoCredito.setValueAt(codigo, i, 0);
+            modeloTablaTipoCredito.setValueAt(descripcion, i, 1);
+            modeloTablaTipoCredito.setValueAt(fechaVigenciaDesde, i, 2);
+            modeloTablaTipoCredito.setValueAt(fechaVigenciaHasta, i, 3);
+            
+        }
+        
+    }
+    
+    /**
+     * Inhabilita los campos y botones
+     */
+    void inhabilitar(){
+        campoCodigoLineaCredito.setEnabled(false);
+        campoDescripcionLineaCredtio.setEnabled(false);
+        dcFechaVigenciaDesde.setEnabled(false);
+        dcFechaVigenciaHasta.setEnabled(false);
+        
+        btnNuevo.setEnabled(false);
+        btnGuardar.setEnabled(false);
+        btnCancelar.setEnabled(false);
+        
+    }
+            
+    
+    /**
+     * Limpia el formulario para el ingreso de datos
+     */
+    public void limpiarFormulario(){
+        campoCodigoLineaCredito.setText("");
+        campoDescripcionLineaCredtio.setText("");
+        dcFechaVigenciaDesde.setCalendar(null);
+        dcFechaVigenciaHasta.setCalendar(null);
+    }
     
 
     /**
@@ -49,15 +102,15 @@ public class FrameTipoCredito extends javax.swing.JDialog {
         cbCondicionLineaCredito = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        dcFechaDesde = new com.toedter.calendar.JDateChooser();
+        dcFechaVigenciaDesde = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        dcFechaHasta = new com.toedter.calendar.JDateChooser();
+        dcFechaVigenciaHasta = new com.toedter.calendar.JDateChooser();
         btnCancelar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaLineaCredito = new javax.swing.JTable();
+        tablaTipoCredito = new javax.swing.JTable();
         btnEliminarLineaCredito = new javax.swing.JButton();
         btnConfMontosCredito = new javax.swing.JButton();
 
@@ -79,11 +132,18 @@ public class FrameTipoCredito extends javax.swing.JDialog {
         btnCancelar.setText("Cancelar");
 
         btnNuevo.setText("Nuevo");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
 
         btnGuardar.setText("Guardar");
 
-        tablaLineaCredito.setModel(modeloTablaTipoCredito);
-        jScrollPane1.setViewportView(tablaLineaCredito);
+        tablaTipoCredito.setModel(modeloTablaTipoCredito);
+        tablaTipoCredito.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tablaTipoCredito.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tablaTipoCredito);
 
         btnEliminarLineaCredito.setText("Eliminar Linea Crédito");
         btnEliminarLineaCredito.addActionListener(new java.awt.event.ActionListener() {
@@ -114,11 +174,11 @@ public class FrameTipoCredito extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dcFechaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(dcFechaVigenciaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dcFechaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(dcFechaVigenciaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -141,9 +201,7 @@ public class FrameTipoCredito extends javax.swing.JDialog {
                         .addGap(149, 149, 149)
                         .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(310, 310, 310))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(569, 569, 569)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(161, 161, 161))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -167,13 +225,13 @@ public class FrameTipoCredito extends javax.swing.JDialog {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(dcFechaDesde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(dcFechaVigenciaDesde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel4)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(cbCondicionLineaCredito)
                                     .addComponent(jLabel3)))
                             .addGap(18, 18, 18)
-                            .addComponent(dcFechaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dcFechaVigenciaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jLabel5)))
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -202,6 +260,10 @@ public class FrameTipoCredito extends javax.swing.JDialog {
     private void btnEliminarLineaCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarLineaCreditoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarLineaCreditoActionPerformed
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,8 +319,8 @@ public class FrameTipoCredito extends javax.swing.JDialog {
     private javax.swing.JTextField campoCodigoLineaCredito;
     private javax.swing.JTextField campoDescripcionLineaCredtio;
     private javax.swing.JComboBox<String> cbCondicionLineaCredito;
-    private com.toedter.calendar.JDateChooser dcFechaDesde;
-    private com.toedter.calendar.JDateChooser dcFechaHasta;
+    private com.toedter.calendar.JDateChooser dcFechaVigenciaDesde;
+    private com.toedter.calendar.JDateChooser dcFechaVigenciaHasta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -266,7 +328,7 @@ public class FrameTipoCredito extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable tablaLineaCredito;
+    private javax.swing.JTable tablaTipoCredito;
     // End of variables declaration//GEN-END:variables
 
     

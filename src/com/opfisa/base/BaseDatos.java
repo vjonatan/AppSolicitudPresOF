@@ -265,14 +265,7 @@ public class BaseDatos {
         }
        
         return listaSolicitudesPrestamo; 
-    }
-    
-    public ArrayList<TipoCredito> obtenerTipoCreditos(){
-        
-        
-    }
-    
-    
+    }                
     
     public static void main(String[] args) {
         BaseDatos bd = new BaseDatos();
