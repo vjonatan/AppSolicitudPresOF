@@ -17,16 +17,19 @@ import javax.swing.table.DefaultTableModel;
  * @author ACER
  */
 public class FrameTipoCredito extends javax.swing.JDialog {
-
+    
+    private String accion = "guardar";
     BaseDatos base = new BaseDatos();
     ManagerTipoCredito mTipoCredito = new ManagerTipoCredito();
     DefaultTableModel modeloTablaTipoCredito = new DefaultTableModel();
     TipoCredito tipoCreditoSeleccionado = null;
     
-    public FrameTipoCredito(java.awt.Frame parent, boolean modal) {
-        initComponents();
+    public FrameTipoCredito(java.awt.Frame parent, boolean modal) {        
         this.cargarColumnasTablaTipoCredito();
         this.cargarTablaTipoCredito();
+        
+        initComponents();
+        inhabilitar();
     }
     
     private void cargarColumnasTablaTipoCredito() {
@@ -62,6 +65,28 @@ public class FrameTipoCredito extends javax.swing.JDialog {
     /**
      * Inhabilita los campos y botones
      */
+    void habilitar(){
+        
+        System.out.println("accion = " + this.accion);
+        if (accion == "editar"){
+            campoCodigoLineaCredito.setEnabled(false);
+        }else{
+            campoCodigoLineaCredito.setEnabled(true);
+        }        
+        
+        campoDescripcionLineaCredtio.setEnabled(true);
+        dcFechaVigenciaDesde.setEnabled(true);
+        dcFechaVigenciaHasta.setEnabled(true);
+        
+        btnNuevo.setEnabled(true);
+        btnGuardar.setEnabled(true);
+        btnCancelar.setEnabled(true);
+        
+    }
+    
+    /**
+     * Inhabilita los campos y botones
+     */
     void inhabilitar(){
         campoCodigoLineaCredito.setEnabled(false);
         campoDescripcionLineaCredtio.setEnabled(false);
@@ -73,8 +98,7 @@ public class FrameTipoCredito extends javax.swing.JDialog {
         btnCancelar.setEnabled(false);
         
     }
-            
-    
+                
     /**
      * Limpia el formulario para el ingreso de datos
      */
@@ -108,6 +132,7 @@ public class FrameTipoCredito extends javax.swing.JDialog {
         dcFechaVigenciaHasta = new com.toedter.calendar.JDateChooser();
         btnCancelar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
+        //tablaTipoCreditos
         btnGuardar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaTipoCredito = new javax.swing.JTable();
@@ -143,6 +168,11 @@ public class FrameTipoCredito extends javax.swing.JDialog {
         tablaTipoCredito.setModel(modeloTablaTipoCredito);
         tablaTipoCredito.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tablaTipoCredito.getTableHeader().setReorderingAllowed(false);
+        tablaTipoCredito.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaTipoCreditoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaTipoCredito);
 
         btnEliminarLineaCredito.setText("Eliminar Linea Crédito");
@@ -158,55 +188,57 @@ public class FrameTipoCredito extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoCodigoLineaCredito, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoDescripcionLineaCredtio, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dcFechaVigenciaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dcFechaVigenciaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbCondicionLineaCredito, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator1)))
-                .addGap(36, 36, 36))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 805, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnEliminarLineaCredito, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                .addGap(25, 25, 25))
+                .addComponent(jSeparator1)
+                .addGap(36, 36, 36))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(192, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(149, 149, 149)
                         .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(310, 310, 310))
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(291, 291, 291)))
                 .addGap(161, 161, 161))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(14, 14, 14)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel1))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(campoCodigoLineaCredito, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(campoDescripcionLineaCredtio, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(dcFechaVigenciaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(dcFechaVigenciaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(160, 160, 160))
+                        .addComponent(cbCondicionLineaCredito, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(50, 50, 50))
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 805, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(btnEliminarLineaCredito)
+                    .addGap(1, 1, 1)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(834, 834, 834)
-                    .addComponent(btnConfMontosCredito, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                    .addComponent(btnConfMontosCredito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGap(26, 26, 26)))
         );
         layout.setVerticalGroup(
@@ -224,14 +256,15 @@ public class FrameTipoCredito extends javax.swing.JDialog {
                             .addComponent(jLabel2)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(dcFechaVigenciaDesde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(dcFechaVigenciaDesde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel4))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(cbCondicionLineaCredito)
+                                    .addComponent(cbCondicionLineaCredito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3)))
                             .addGap(18, 18, 18)
-                            .addComponent(dcFechaVigenciaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dcFechaVigenciaHasta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addComponent(jLabel5)))
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -240,11 +273,12 @@ public class FrameTipoCredito extends javax.swing.JDialog {
                     .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(101, 101, 101)
                         .addComponent(btnEliminarLineaCredito, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(38, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,7 +297,39 @@ public class FrameTipoCredito extends javax.swing.JDialog {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
+        limpiarFormulario();
+        habilitar();
+        btnGuardar.setText("Guardar");
+        this.accion = "guardar";
+        campoCodigoLineaCredito.requestFocus();
     }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void tablaTipoCreditoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaTipoCreditoMouseClicked
+        accion = "editar";
+        btnGuardar.setText("Editar");
+        habilitar();
+        btnEliminarLineaCredito.setEnabled(true);        
+        
+        ManagerTipoCredito mTipoCredito = new ManagerTipoCredito();
+        
+        int fila = tablaTipoCredito.rowAtPoint(evt.getPoint());
+        
+        if (tablaTipoCredito.getValueAt(fila, 0).toString() != null){
+            campoCodigoLineaCredito.setText(tablaTipoCredito.getValueAt(fila, 0).toString());            
+        }
+        
+        if (tablaTipoCredito.getValueAt(fila, 1).toString() != null){
+            campoDescripcionLineaCredtio.setText(tablaTipoCredito.getValueAt(fila, 1).toString());            
+        }
+        
+        if (tablaTipoCredito.getValueAt(fila, 2).toString() != null){
+            dcFechaVigenciaDesde.setDate( Date.valueOf( tablaTipoCredito.getValueAt(fila, 2).toString() ) );          
+        }
+        
+        if (tablaTipoCredito.getValueAt(fila, 3).toString() != null){
+            dcFechaVigenciaHasta.setDate( Date.valueOf( tablaTipoCredito.getValueAt(fila, 3).toString() ) );          
+        }
+    }//GEN-LAST:event_tablaTipoCreditoMouseClicked
 
     /**
      * @param args the command line arguments
