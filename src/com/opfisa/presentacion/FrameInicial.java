@@ -53,6 +53,7 @@ public class FrameInicial extends javax.swing.JFrame {
         editMenu.setMnemonic('e');
         editMenu.setText("Configuraciones");
 
+        personaMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/opfisa/files/clientes.png"))); // NOI18N
         personaMenuItem.setMnemonic('t');
         personaMenuItem.setText("Clientes");
         personaMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -62,6 +63,7 @@ public class FrameInicial extends javax.swing.JFrame {
         });
         editMenu.add(personaMenuItem);
 
+        tipoDocumentoMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/opfisa/files/documents.png"))); // NOI18N
         tipoDocumentoMenuItem.setMnemonic('y');
         tipoDocumentoMenuItem.setText("Tipo Documento");
         tipoDocumentoMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -71,6 +73,7 @@ public class FrameInicial extends javax.swing.JFrame {
         });
         editMenu.add(tipoDocumentoMenuItem);
 
+        bancoMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/opfisa/files/bank.png"))); // NOI18N
         bancoMenuItem.setMnemonic('p');
         bancoMenuItem.setText("Banco");
         bancoMenuItem.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -81,6 +84,7 @@ public class FrameInicial extends javax.swing.JFrame {
         });
         editMenu.add(bancoMenuItem);
 
+        localidadMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/opfisa/files/place-store.png"))); // NOI18N
         localidadMenuItem.setMnemonic('d');
         localidadMenuItem.setText("Localidad");
         localidadMenuItem.addActionListener(new java.awt.event.ActionListener() {
